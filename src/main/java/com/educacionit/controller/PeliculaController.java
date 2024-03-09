@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.educacionit.dto.PeliculaDTO;
 import com.educacionit.dto.ResumenPeliculaDTO;
+import com.educacionit.service.IGeneroService;
 import com.educacionit.service.IPeliculaService;
 
 @RestController
@@ -22,6 +23,8 @@ import com.educacionit.service.IPeliculaService;
 public class PeliculaController {
 	@Autowired
 	private IPeliculaService peliculaService;
+	@Autowired
+	private IGeneroService generoService;
 	@PostMapping(value = "/save",consumes = {org.springframework.http.MediaType.APPLICATION_JSON_VALUE,
 												org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE})
 	public ResponseEntity<ResumenPeliculaDTO> registrarPelicula(@RequestPart("movie") String movie,
@@ -33,6 +36,12 @@ public class PeliculaController {
 	@GetMapping("/findbytitle/{titulo}")
 	public ResponseEntity<List<PeliculaDTO>> buscarPorTitulo(@PathVariable String titulo){
 		List<PeliculaDTO> peliculas = peliculaService.buscarPorTitulo(titulo);
+		return ResponseEntity.ok(peliculas);
+	}
+	
+	@GetMapping("/findbygenre/{genero}")
+	public ResponseEntity<List<PeliculaDTO>> buscarPorGenero(@PathVariable String genero) {
+		List<PeliculaDTO> peliculas = generoService.obtenerPorGenero(genero);
 		return ResponseEntity.ok(peliculas);
 	}
 }

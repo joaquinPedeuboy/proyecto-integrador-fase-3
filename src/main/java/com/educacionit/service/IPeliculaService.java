@@ -11,4 +11,5 @@ public interface IPeliculaService {
 	ResumenPeliculaDTO registarPelicula(String movie, MultipartFile archivoImagen);
 	
 	List<PeliculaDTO> buscarPorTitulo (String titulo);
+	
 }
