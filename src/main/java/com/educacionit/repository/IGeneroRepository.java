@@ -8,4 +8,5 @@ import com.educacionit.entity.Genero;
 @Repository
 public interface IGeneroRepository extends JpaRepository<Genero, Integer>{
 
+	Genero findByNombreGenero(String nombreGenero);
 }
