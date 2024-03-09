@@ -1,6 +1,6 @@
 package com.educacionit.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,5 +23,5 @@ public class Genero {
 	@Column(name = "gen_nombre",nullable = false,length = 15)
 	private String nombreGenero;
 	@ManyToMany(mappedBy = "generos",fetch = FetchType.EAGER)
-	private Set<Pelicula> peliculas;
+	private List<Pelicula> peliculas;
 }
